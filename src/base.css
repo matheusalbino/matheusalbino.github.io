@@ -5,3 +5,10 @@
 @tailwind utilities;
 
 @tailwind screens;
+
+html,
+body,
+#root {
+  @apply min-h-full h-full antialiased subpixel-antialiased bg-primary relative;
+  scroll-behavior: smooth;
+}
