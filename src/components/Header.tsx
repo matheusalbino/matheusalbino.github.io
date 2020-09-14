@@ -23,7 +23,7 @@ export const Header: React.FC = () => {
         <HeaderMenuItem
           for={menuItems}
           for-key={(menu) => menu.to}
-          for-active={(menu: any) => sectionActive === menu.to}
+          for-active={(menu) => sectionActive === menu.to}
           onClick={selectSection}
         />
       </HeaderMenu>

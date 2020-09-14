@@ -1,16 +1,29 @@
 import React, { memo } from 'react';
-import { For } from '../common/repeat';
+import { For } from '@equal/react-logic';
 
-interface HeaderMenuItemProps {
+interface HeaderMenuItemDataProps {
   to: string;
   title: string;
-  active?: boolean;
-  onClick?(target: string): void;
 }
 
-export const HeaderMenuItem = For(
-  memo((props: HeaderMenuItemProps) => {
-    const { to, title, active, onClick } = props;
+interface HeaderMenuItemProps {
+  data: HeaderMenuItemDataProps;
+  active: boolean;
+  onClick(target: string): void;
+}
+
+interface ForExtraProps<T = any> {
+  'for-active'(item: T, index: number): boolean;
+  onClick(target: string): void;
+}
+
+export const HeaderMenuItem = For<HeaderMenuItemProps, ForExtraProps<HeaderMenuItemDataProps>, HeaderMenuItemDataProps>(
+  memo((props) => {
+    const {
+      data: { to, title },
+      active,
+      onClick
+    } = props;
 
     return (
       <li
@@ -18,7 +31,7 @@ export const HeaderMenuItem = For(
           active === true ? 'font-medium text-primary bg-highlight hover:bg-highlight-dark' : 'hover:bg-primary-darkest'
         }`}
         onClick={() => {
-          onClick?.(to);
+          onClick(to);
         }}
       >
         {title}
