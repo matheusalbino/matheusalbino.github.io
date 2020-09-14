@@ -7,8 +7,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const TerserJSPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
-module.exports = ()=> {
-
+module.exports = () => {
   const OUTPUT_DIR = path.resolve(__dirname, 'dist');
   const isProduction = process.env.NODE_ENV === 'production';
 
@@ -18,7 +17,7 @@ module.exports = ()=> {
     }),
     new HtmlWebpackPlugin({
       template: 'src/index.html',
-      title: 'Matheus Albino',
+      title: 'Matheus Albino'
     })
   ];
 
@@ -27,21 +26,19 @@ module.exports = ()=> {
   let optimization;
   let mode;
 
-  if(isProduction === true) {
+  if (isProduction === true) {
     mode = 'production';
 
     optimization = {
-      minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})],
-    }
+      minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})]
+    };
 
     plugins.push(
       new CopyPlugin({
-        patterns: [
-          { from: 'public', to: OUTPUT_DIR },
-        ],
+        patterns: [{ from: 'public', to: OUTPUT_DIR }]
       }),
       new MiniCssExtractPlugin({
-        filename: 'static/css/[name].[hash].css',
+        filename: 'static/css/[name].[hash].css'
       }),
       new CleanWebpackPlugin()
     );
@@ -50,16 +47,16 @@ module.exports = ()=> {
       {
         loader: MiniCssExtractPlugin.loader,
         options: {
-          publicPath: '../',
-        },
+          publicPath: '../'
+        }
       },
-     'css-loader',
-     'postcss-loader'
+      'css-loader',
+      'postcss-loader'
     );
   } else {
     mode = 'development';
 
-    cssLoader.push('style-loader', 'css-loader', 'postcss-loader')
+    cssLoader.push('style-loader', 'css-loader', 'postcss-loader');
   }
 
   return {
@@ -71,21 +68,21 @@ module.exports = ()=> {
         {
           test: /\.tsx?$/,
           use: 'ts-loader',
-          exclude: /node_modules/,
+          exclude: /node_modules/
         },
         {
           test: /\.css$/i,
-          use: cssLoader,
-        },
-      ],
+          use: cssLoader
+        }
+      ]
     },
     optimization,
     resolve: {
-      extensions: [ '.tsx', '.ts', '.js' ],
+      extensions: ['.tsx', '.ts', '.js']
     },
     output: {
       filename: 'static/js/[name].[hash].js',
-      path: OUTPUT_DIR,
+      path: OUTPUT_DIR
     },
     plugins,
     devServer: {
