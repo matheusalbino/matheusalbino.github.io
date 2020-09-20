@@ -18,7 +18,14 @@ jobs:
 
       - uses: yunree/package-version@v1
 
-      - run: npm install
+      - uses: actions/cache@v2
+        id: cache
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-build-${{ hashFiles('./package-lock.json') }}
+
+      - if: steps.cache.outputs.cache-hit != 'true'
+        run: npm i
 
       - run: echo ${{ secrets.DOTENV }} > .env.production
 
