@@ -42,7 +42,7 @@ jobs:
       - name: Deploy & Invalidate Cache
         env:
           AWS_S3_BUCKETNAME: ${{ secrets.AWS_S3_BUCKETNAME }}
-          AWS_CLOUDFRONT_DIST: ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }}
+          AWS_CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID }}
         run: |
           aws s3 sync dist s3://$AWS_S3_BUCKETNAME/ --delete
           aws cloudfront create-invalidation --distribution-id $AWS_CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
