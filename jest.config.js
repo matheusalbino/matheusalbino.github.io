@@ -1,10 +1,8 @@
 module.exports = {
-  cacheDirectory: ".jest-cache",
+  cacheDirectory: 'node_modules/.cache/jest',
   clearMocks: true,
-  coverageDirectory: "coverage",
-  coverageProvider: "v8",
+  coverageDirectory: 'coverage',
+  coverageProvider: 'v8',
   preset: 'ts-jest',
-  setupFilesAfterEnv: [
-    '<rootDir>/jest.setup.ts'
-  ],
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.ts']
 };

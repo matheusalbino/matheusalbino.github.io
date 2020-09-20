@@ -5,10 +5,10 @@
 
 # testing
 /coverage
-.jest-cache
 
-# production
+# build
 /dist
+bundle-*.html
 
 # misc
 .DS_Store
