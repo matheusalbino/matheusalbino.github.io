@@ -28,7 +28,7 @@ export const HeaderMenuItem = For<HeaderMenuItemProps, ForExtraProps<HeaderMenuI
     return (
       <li
         className={`cursor-pointer flex items-center h-full p-4 transition-all duration-300 capitalize ${
-          active === true ? 'font-medium text-primary bg-highlight hover:bg-highlight-dark' : 'hover:bg-primary-darkest'
+          active ? 'font-medium text-primary bg-highlight hover:bg-highlight-dark' : 'hover:bg-primary-darkest'
         }`}
         onClick={() => {
           onClick(to);
