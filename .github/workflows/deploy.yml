@@ -20,6 +20,8 @@ jobs:
 
       - run: npm install
 
+      - run: echo ${{ secrets.DOTENV }} > .env.production
+
       - run: npm run build
 
       - run: npm run deploy
