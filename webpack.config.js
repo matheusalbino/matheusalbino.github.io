@@ -42,7 +42,7 @@ module.exports = () => {
         defaultSizes: 'gzip'
       }),
       new LicenseCheckerWebpackPlugin({
-        allow: '(Apache-2.0 OR BSD-2-Clause OR BSD-3-Clause OR MIT OR ISC)',
+        allow: '(Apache-2.0 OR BSD-2-Clause OR BSD-3-Clause OR MIT OR ISC OR 0BSD)',
         emitError: true,
         outputFilename: 'ThirdPartyNotices.txt'
       })
