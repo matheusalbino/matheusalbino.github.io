@@ -1,9 +1,7 @@
 import classNames from 'classnames';
-import React, { useEffect, useMemo, useState } from 'react';
-import { useTheme } from '../common/Theme';
+import React, { memo, useCallback, useMemo } from 'react';
 import { useSectionNavigation } from '../common/useSectionNavigation';
-import DarkTheme from '../themes/DarkTheme';
-import LightTheme from '../themes/LightTheme';
+import { useThemeManager } from '../common/useThemeManager';
 import { HeaderMenu } from './HeaderMenu';
 import { HeaderMenuItem } from './HeaderMenuItem';
 import { Toggle } from './Toggle';
@@ -14,27 +12,27 @@ const menuItems = [
   { to: 'contact', title: 'Contact' }
 ];
 
-export const Header: React.FC = () => {
+export const Header: React.FC = memo(function Header() {
   const { sectionActive, selectSection } = useSectionNavigation(
     menuItems.map((menu) => menu.to),
     document.body
   );
-
-  const [selectedTheme, setSelectedTheme] = useState<'dark' | 'light'>('dark');
-
-  const { theme, setTheme } = useTheme();
-
-  useEffect(() => {
-    setTheme(selectedTheme === 'dark' ? DarkTheme : LightTheme);
-  }, [selectedTheme, setTheme]);
+  const { selectedTheme, selectTheme } = useThemeManager();
 
   const headerClassName = useMemo(
     () =>
-      classNames('w-full h-16 flex text-white fixed', {
-        'bg-primary-dark': theme.base === 'dark',
-        'bg-highlight-dark': theme.base === 'light'
+      classNames('w-full h-16 flex text-white fixed shadow-md', {
+        'bg-primary-dark': selectedTheme === 'dark',
+        'bg-highlight-dark': selectedTheme === 'light'
       }),
-    [theme.base]
+    [selectedTheme]
+  );
+
+  const onToggleTheme = useCallback(
+    (value: boolean): void => {
+      selectTheme(value ? 'dark' : 'light');
+    },
+    [selectTheme]
   );
 
   return (
@@ -54,12 +52,9 @@ export const Header: React.FC = () => {
         className="px-4"
         label={selectedTheme === 'dark' ? 'Dark' : 'Light'}
         value={selectedTheme === 'dark'}
-        color={{
-          normal: 'bg-highlight',
-          active: 'bg-highlight'
-        }}
-        onChange={(value) => setSelectedTheme(value ? 'dark' : 'light')}
+        color={{ normal: 'bg-highlight', active: 'bg-highlight' }}
+        onChange={onToggleTheme}
       />
     </header>
   );
-};
+});

@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React from 'react';
+import React, { memo } from 'react';
 
 export const Toggle: React.FC<{
   name: string;
@@ -8,7 +8,7 @@ export const Toggle: React.FC<{
   onChange(value: boolean): void;
   className?: string;
   color?: { normal: string; active: string };
-}> = (props) => {
+}> = memo((props) => {
   const { name, label, value, onChange, className, color } = props;
 
   return (
@@ -44,4 +44,4 @@ export const Toggle: React.FC<{
       <span className="ml-3 text-sm">{label}</span>
     </label>
   );
-};
+});

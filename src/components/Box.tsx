@@ -1,8 +1,8 @@
 import classNames from 'classnames';
-import React from 'react';
+import React, { memo } from 'react';
 import { useTheme } from '../common/Theme';
 
-export const Box: React.FC<{ className?: string }> = (props) => {
+export const Box: React.FC<{ className?: string }> = memo(function Box(props) {
   const { theme } = useTheme();
 
   const BoxClassName = classNames(
@@ -12,4 +12,4 @@ export const Box: React.FC<{ className?: string }> = (props) => {
   );
 
   return <div className={BoxClassName}>{props.children}</div>;
-};
+});
