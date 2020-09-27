@@ -5,22 +5,28 @@ import * as Sentry from '@sentry/react';
 import { Integrations } from '@sentry/tracing';
 import { version } from '../package.json';
 import { Index } from './pages/index';
+import { ThemeSettings } from './common/Theme';
+import DarkTheme from './themes/DarkTheme';
 
-Sentry.init({
-  dsn: process.env.SENTRY_DNS,
-  release: version,
-  integrations: [new Integrations.BrowserTracing()],
-  tracesSampleRate: 1.0,
-  environment: process.env.NODE_ENV ?? 'development',
-  debug: process.env.NODE_ENV !== 'production'
-});
+if (process.env.NODE_ENV === 'production') {
+  Sentry.init({
+    dsn: process.env.SENTRY_DNS,
+    release: version,
+    integrations: [new Integrations.BrowserTracing()],
+    tracesSampleRate: 1.0,
+    environment: process.env.NODE_ENV ?? 'development',
+    debug: process.env.NODE_ENV !== 'production'
+  });
+}
 
 const Root = Sentry.withProfiler(Index);
 
 ReactDOM.render(
   <React.StrictMode>
     <Sentry.ErrorBoundary fallback={'An error has occured'}>
-      <Root />
+      <ThemeSettings theme={DarkTheme}>
+        <Root />
+      </ThemeSettings>
     </Sentry.ErrorBoundary>
   </React.StrictMode>,
   document.getElementById('root')

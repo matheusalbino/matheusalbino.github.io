@@ -1,12 +1,15 @@
+import classNames from 'classnames';
 import React from 'react';
+import { useTheme } from '../common/Theme';
+
 export const Box: React.FC<{ className?: string }> = (props) => {
-  return (
-    <div
-      className={`w-24 text-center shadow bg-black bg-opacity-25 p-4 rounded-sm flex flex-col items-center ${
-        props.className ?? ''
-      }`}
-    >
-      {props.children}
-    </div>
+  const { theme } = useTheme();
+
+  const BoxClassName = classNames(
+    'w-24 text-center shadow p-4 rounded-sm flex flex-col items-center',
+    props.className,
+    { 'bg-primary-darkest': theme.base === 'dark', 'bg-highlight-darkest': theme.base === 'light' }
   );
+
+  return <div className={BoxClassName}>{props.children}</div>;
 };

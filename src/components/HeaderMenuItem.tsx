@@ -1,5 +1,7 @@
-import React, { memo } from 'react';
+import React, { memo, useMemo } from 'react';
 import { For } from '@equal/react-logic';
+import classNames from 'classnames';
+import { useTheme } from '../common/Theme';
 
 interface HeaderMenuItemDataProps {
   to: string;
@@ -19,17 +21,28 @@ interface ForExtraProps<T = any> {
 
 export const HeaderMenuItem = For<HeaderMenuItemProps, ForExtraProps<HeaderMenuItemDataProps>, HeaderMenuItemDataProps>(
   memo((props) => {
+    const { theme } = useTheme();
+
     const {
       data: { to, title },
       active,
       onClick
     } = props;
 
+    const HeaderMenuItemClassName = useMemo(
+      () =>
+        classNames('cursor-pointer flex items-center h-full p-4 transition-color duration-300 capitalize', {
+          'font-medium text-primary bg-highlight hover:bg-highlight-dark': active && theme.base === 'dark',
+          'font-medium text-highlight bg-primary hover:bg-primary-dark': active && theme.base === 'light',
+          'hover:bg-primary-darkest': !active && theme.base === 'dark',
+          'hover:bg-highlight-darkest': !active && theme.base === 'light'
+        }),
+      [theme.base, active]
+    );
+
     return (
       <li
-        className={`cursor-pointer flex items-center h-full p-4 transition-all duration-300 capitalize ${
-          active ? 'font-medium text-primary bg-highlight hover:bg-highlight-dark' : 'hover:bg-primary-darkest'
-        }`}
+        className={HeaderMenuItemClassName}
         onClick={() => {
           onClick(to);
         }}

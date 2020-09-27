@@ -17,7 +17,7 @@ export const Index: React.FC = () => {
 
       <Header />
 
-      <main className="container space-y-4 divide-y divide-secondary divide-opacity-25 text-secondary">
+      <main className="container space-y-4 divide-y bg-primary divide-secondary divide-opacity-25 text-secondary">
         <Suspense fallback={null}>
           <WelcomeSection />
         </Suspense>

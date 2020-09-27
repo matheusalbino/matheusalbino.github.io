@@ -15,15 +15,15 @@ module.exports = {
     extend: {
       colors: {
         primary: {
-          default: '#23263A',
-          dark: '#1E2031',
-          darkest: '#191B29'
+          default: 'var(--color-primary)',
+          dark: 'var(--color-primary-dark)',
+          darkest: 'var(--color-primary-darkest)'
         },
-        secondary: '#FFFFFF',
+        secondary: 'var(--color-secondary)',
         highlight: {
-          default: '#4fd1c5',
-          dark: '#32C3B4',
-          darkest: '#2AA296'
+          default: 'var(--color-highlight)',
+          dark: 'var(--color-highlight-dark)',
+          darkest: 'var(--color-highlight-darkest)'
         }
       }
     }
