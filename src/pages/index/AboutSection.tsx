@@ -22,7 +22,7 @@ const AboutSection: React.FC = () => {
   });
 
   return (
-    <div id="about" className="min-h-screen pt-20">
+    <section id="about" className="min-h-screen pt-20">
       <span className="capitalize">about</span>
       <h2 className="text-5xl font-medium text-highlight capitalize">knowledge</h2>
       <hr className="border-b-4 border-highlight w-32" />
@@ -147,7 +147,7 @@ const AboutSection: React.FC = () => {
           <p className={iconLegendClassName}>UE</p>
         </Box>
       </div>
-    </div>
+    </section>
   );
 };
 

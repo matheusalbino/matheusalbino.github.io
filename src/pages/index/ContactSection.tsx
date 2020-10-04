@@ -17,7 +17,7 @@ const ContactSection: React.FC = () => {
   });
 
   return (
-    <div id="contact" className="h-screen pt-20">
+    <section id="contact" className="h-screen pt-20">
       <span className="capitalize">contact</span>
       <h2 className="text-5xl font-medium text-highlight capitalize">social</h2>
       <hr className="border-b-4 border-highlight w-32" />
@@ -60,7 +60,7 @@ const ContactSection: React.FC = () => {
           </Box>
         </a>
       </div>
-    </div>
+    </section>
   );
 };
 

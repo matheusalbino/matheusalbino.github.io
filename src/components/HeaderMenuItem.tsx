@@ -22,13 +22,13 @@ interface ForExtraProps<T = any> {
 export const HeaderMenuItem = memo(
   For<HeaderMenuItemProps, ForExtraProps<HeaderMenuItemDataProps>, HeaderMenuItemDataProps>(
     memo(function HeaderMenuItem(props) {
-      const { theme } = useTheme();
-
       const {
         data: { to, title },
         active,
         onClick
       } = props;
+
+      const { theme } = useTheme();
 
       const HeaderMenuItemClassName = useMemo(
         () =>
