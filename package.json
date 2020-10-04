@@ -4,7 +4,7 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "ssh://git@github.com:matheusalbino/matheusalbino.github.io.git"
+    "url": "ssh://git@github.com:matheusalbino/website.git"
   },
   "scripts": {
     "postinstall": "is-ci || husky install",
