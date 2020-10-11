@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import * as Sentry from '@sentry/react';
 import { Integrations } from '@sentry/tracing';
-import { version } from '../package.json';
+import Package from '../package.json';
 import { Index } from './pages/index';
 import { ThemeSettings } from './common/Theme';
 import DarkTheme from './themes/DarkTheme';
@@ -11,7 +11,7 @@ import DarkTheme from './themes/DarkTheme';
 if (process.env.NODE_ENV === 'production') {
   Sentry.init({
     dsn: process.env.SENTRY_DNS,
-    release: version,
+    release: Package.version,
     integrations: [new Integrations.BrowserTracing()],
     tracesSampleRate: 1.0,
     environment: process.env.NODE_ENV ?? 'development',

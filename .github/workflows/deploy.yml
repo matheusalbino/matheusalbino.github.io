@@ -56,4 +56,4 @@ jobs:
           environment: production
           version: ${{ env.PACKAGE_VERSION }}
           version_prefix: "v"
-          sourcemaps: "./dist/static/js"
+          sourcemaps: "./dist/static/js ./dist/static/css"
