@@ -68,6 +68,7 @@
     "postcss-cli": "^8.1.0",
     "postcss-loader": "^4.0.4",
     "prettier": "^2.1.2",
+    "standard-version": "^9.0.0",
     "style-loader": "^2.0.0",
     "tailwindcss": "^1.8.13",
     "terser-webpack-plugin": "^4.2.3",
