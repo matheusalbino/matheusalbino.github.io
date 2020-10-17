@@ -1,5 +1,3 @@
-const { env } = require('process');
-
 function getFileName(env) {
   if (env.local) {
     return '[name]';

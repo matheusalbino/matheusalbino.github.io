@@ -1,7 +1,7 @@
 function getDevServer({ outputPath }) {
   return {
     open: true,
-    contentBase: outputPath,
+    contentBase: [outputPath, './public'],
     hot: true,
     compress: true,
     port: 3000,

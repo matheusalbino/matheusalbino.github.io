@@ -28,7 +28,7 @@ module.exports = (env, argv) => {
     stats: {
       colors: true
     },
-    plugins: getPlugins(env, { outputPath }),
-    devServer: getDevServer(env, { outputPath })
+    plugins: getPlugins(env),
+    devServer: getDevServer({ outputPath })
   };
 };
